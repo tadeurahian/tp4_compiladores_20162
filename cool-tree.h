@@ -349,7 +349,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef static_dispatch_EXTRAS
    static_dispatch_EXTRAS
@@ -373,7 +374,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef dispatch_EXTRAS
    dispatch_EXTRAS
@@ -397,7 +399,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef cond_EXTRAS
    cond_EXTRAS
@@ -419,7 +422,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef loop_EXTRAS
    loop_EXTRAS
@@ -441,7 +445,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef typcase_EXTRAS
    typcase_EXTRAS
@@ -461,7 +466,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef block_EXTRAS
    block_EXTRAS
@@ -487,7 +493,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef let_EXTRAS
    let_EXTRAS
@@ -509,7 +516,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef plus_EXTRAS
    plus_EXTRAS
@@ -531,7 +539,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef sub_EXTRAS
    sub_EXTRAS
@@ -553,7 +562,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef mul_EXTRAS
    mul_EXTRAS
@@ -575,7 +585,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef divide_EXTRAS
    divide_EXTRAS
@@ -595,7 +606,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef neg_EXTRAS
    neg_EXTRAS
@@ -617,7 +629,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef lt_EXTRAS
    lt_EXTRAS
@@ -639,7 +652,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef eq_EXTRAS
    eq_EXTRAS
@@ -661,7 +675,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef leq_EXTRAS
    leq_EXTRAS
@@ -681,7 +696,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef comp_EXTRAS
    comp_EXTRAS
@@ -701,7 +717,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef int_const_EXTRAS
    int_const_EXTRAS
@@ -721,7 +738,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef bool_const_EXTRAS
    bool_const_EXTRAS
@@ -741,7 +759,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef string_const_EXTRAS
    string_const_EXTRAS
@@ -761,7 +780,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef new__EXTRAS
    new__EXTRAS
@@ -781,7 +801,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef isvoid_EXTRAS
    isvoid_EXTRAS
@@ -799,7 +820,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef no_expr_EXTRAS
    no_expr_EXTRAS
@@ -819,7 +841,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef object_EXTRAS
    object_EXTRAS
