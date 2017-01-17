@@ -226,7 +226,7 @@ public:
 #endif
 
 #ifdef method_EXTRAS
-  Symbol get_return_type() { return return_type; }    \
+  Symbol get_return_type() { return return_type; }
   Formals get_formals() { return formals; }
 #endif
 };
