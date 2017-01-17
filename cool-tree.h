@@ -217,17 +217,14 @@ public:
    }
    Feature copy_Feature();
    void dump(ostream& stream, int n);
+   Symbol get_return_type() { return return_type; }
+   Formals get_formals() { return formals; }
 
 #ifdef Feature_SHARED_EXTRAS
   void dump_with_types(ostream&,int);
   void semant(ClassTable*);
   Symbol get_name() { return name; }
   void publish(ClassTable*);
-#endif
-
-#ifdef method_EXTRAS
-  Symbol get_return_type() { return return_type; }
-  Formals get_formals() { return formals; }
 #endif
 };
 
