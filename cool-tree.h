@@ -244,7 +244,10 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Feature_SHARED_EXTRAS
-   Feature_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  void semant(ClassTable*);
+  Symbol get_name() { return name; }
+  void publish(ClassTable*);
 #endif
 #ifdef attr_EXTRAS
    attr_EXTRAS
@@ -266,7 +269,10 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Formal_SHARED_EXTRAS
-   Formal_SHARED_EXTRAS
+  virtual void dump_with_types(ostream&,int) = 0;
+  virtual void publish(ClassTable*) = 0;
+  virtual Symbol get_type() = 0;
+  virtual Symbol get_name() = 0;
 #endif
 
 #ifdef formal_EXTRAS
