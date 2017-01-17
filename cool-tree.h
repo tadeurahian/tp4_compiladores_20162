@@ -784,6 +784,94 @@ public:
 #endif
 };
 
+// Custom node methods
+
+#define Program_EXTRAS                          \
+virtual void semant() = 0;			\
+virtual void dump_with_types(ostream&, int) = 0;
+
+#define program_EXTRAS                          \
+void semant();     				\
+void dump_with_types(ostream&, int);
+
+#define Class__EXTRAS                   \
+virtual Symbol get_filename() = 0;      \
+virtual void dump_with_types(ostream&,int) = 0; \
+virtual Symbol get_name() = 0;      \
+virtual Symbol get_parent() = 0;    \
+virtual void semant(ClassTable*) = 0;  \
+virtual Features get_features() = 0;
+
+
+#define class__EXTRAS                                 \
+Symbol get_filename() { return filename; }             \
+void dump_with_types(ostream&,int);                     \
+Symbol get_name() { return name; }                    \
+Symbol get_parent() { return parent; }              \
+void semant(ClassTable*);               \
+Features get_features() { return features; }
+
+
+#define Feature_EXTRAS                                        \
+virtual void dump_with_types(ostream&,int) = 0;     \
+virtual void semant(ClassTable*) = 0;      \
+virtual Symbol get_name() = 0; \
+virtual void publish(ClassTable*) = 0;
+
+#define Feature_SHARED_EXTRAS                                       \
+void dump_with_types(ostream&,int);                         \
+void semant(ClassTable*);                   \
+Symbol get_name() { return name; }     \
+void publish(ClassTable*);
+
+
+#define Method_EXTRAS           \
+virtual Formals get_formals() = 0;
+
+#define method_EXTRAS                           \
+Symbol get_return_type() { return return_type; }    \
+Formals get_formals() { return formals; }
+
+#define Formal_EXTRAS                              \
+virtual void dump_with_types(ostream&,int) = 0;  \
+virtual void publish(ClassTable*) = 0;      \
+virtual Symbol get_type() = 0;        \
+virtual Symbol get_name() = 0;
+
+
+#define formal_EXTRAS                           \
+void dump_with_types(ostream&,int);        \
+void publish(ClassTable*);       \
+Symbol get_type() { return type_decl; }    \
+Symbol get_name() { return name; }
+
+
+#define Case_EXTRAS                             \
+virtual void dump_with_types(ostream& ,int) = 0; \
+virtual Symbol semant(ClassTable*) = 0;   \
+virtual Symbol get_type() = 0;
+
+
+#define branch_EXTRAS                                   \
+void dump_with_types(ostream& ,int);                \
+Symbol semant(ClassTable*);              \
+Symbol get_type() { return type_decl; }
+
+
+#define Expression_EXTRAS                    \
+Symbol type;                                 \
+Symbol get_type() { return type; }           \
+Expression set_type(Symbol s) { type = s; return this; } \
+virtual void dump_with_types(ostream&,int) = 0;  \
+void dump_type(ostream&, int);               \
+Expression_class() { type = (Symbol) NULL; } \
+virtual Symbol semant(ClassTable*) = 0;
+
+
+#define Expression_SHARED_EXTRAS           \
+void dump_with_types(ostream&,int);         \
+Symbol semant(ClassTable*);
+
 
 // define the prototypes of the interface
 Classes nil_Classes();
