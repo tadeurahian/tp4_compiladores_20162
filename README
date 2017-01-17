@@ -2,9 +2,10 @@ README para TP 4 da disciplina de Compiladores
 ==============================================
 
 Para a implementação do analisador semântico foi necessário alterar os arquivos
-semant.cc e semant.h, não sendo necessário realizar alterações no cool-tree.h,
-considerando que seu conteúdo já era necessário para que a implementação fosse
-realizada.
+semant.cc, semant.h e cool-tree.h. Os arquivos semant.c e semant.h possuem as regras
+e validações semânticas da linguagem COOL, o arquivo cool-tree.h possui os diversos tipos
+de nós possíveis, assim como seus métodos auxiliares, nesse arquivo foi necessário apenas
+criar os métodos auxiliares.
 
 A implementação utilizou de guia a documentação disponibilizada da linguagem
 COOL, para garantir que fosse feita a cobertura de todos os erros de semântica
@@ -16,3 +17,6 @@ Como dito na especificação do trabalho não é possível realizar uma cobertur
 total dos testes de semântica utilizando um arquivo, então segui o mesmo modelo
 de testes que utilizei para o TP3, utilizei o programa desenvolvido no TP1 para
 o arquivo good.cl e no arquivo bad.cl injetei o máximo possível de erros semânticos.
+
+A criação dos testes foi um grande desafio, pois injetar erros sintáticos que não
+fossem barrados na análise léxica se provou um desafio.
