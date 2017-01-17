@@ -23,7 +23,8 @@ public:
    virtual Program copy_Program() = 0;
 
 #ifdef Program_EXTRAS
-   Program_EXTRAS
+  virtual void semant() = 0;
+  virtual void dump_with_types(ostream&, int) = 0;
 #endif
 };
 
@@ -37,8 +38,14 @@ public:
    virtual Class_ copy_Class_() = 0;
 
 #ifdef Class__EXTRAS
-   Class__EXTRAS
+  virtual Symbol get_filename() = 0;
+  virtual void dump_with_types(ostream&,int) = 0;
+  virtual Symbol get_name() = 0;
+  virtual Symbol get_parent() = 0;
+  virtual void semant(ClassTable*) = 0;
+  virtual Features get_features() = 0;
 #endif
+
 };
 
 
@@ -51,7 +58,10 @@ public:
    virtual Feature copy_Feature() = 0;
 
 #ifdef Feature_EXTRAS
-   Feature_EXTRAS
+  virtual void dump_with_types(ostream&,int) = 0;
+  virtual void semant(ClassTable*) = 0;
+  virtual Symbol get_name() = 0;
+  virtual void publish(ClassTable*) = 0;
 #endif
 };
 
@@ -65,7 +75,10 @@ public:
    virtual Formal copy_Formal() = 0;
 
 #ifdef Formal_EXTRAS
-   Formal_EXTRAS
+  virtual void dump_with_types(ostream&,int) = 0;
+  virtual void publish(ClassTable*) = 0;
+  virtual Symbol get_type() = 0;
+  virtual Symbol get_name() = 0;
 #endif
 };
 
@@ -79,8 +92,15 @@ public:
    virtual Expression copy_Expression() = 0;
 
 #ifdef Expression_EXTRAS
-   Expression_EXTRAS
+  Symbol type;
+  Symbol get_type() { return type; }
+  Expression set_type(Symbol s) { type = s; return this; }
+  virtual void dump_with_types(ostream&,int) = 0;
+  void dump_type(ostream&, int);
+  Expression_class() { type = (Symbol) NULL; }
+  virtual Symbol semant(ClassTable*) = 0;
 #endif
+
 };
 
 
@@ -93,7 +113,9 @@ public:
    virtual Case copy_Case() = 0;
 
 #ifdef Case_EXTRAS
-   Case_EXTRAS
+  virtual void dump_with_types(ostream& ,int) = 0;
+  virtual Symbol semant(ClassTable*) = 0;
+  virtual Symbol get_type() = 0;
 #endif
 };
 
@@ -139,8 +161,10 @@ public:
 #ifdef Program_SHARED_EXTRAS
    Program_SHARED_EXTRAS
 #endif
+
 #ifdef program_EXTRAS
-   program_EXTRAS
+  void semant();
+  void dump_with_types(ostream&, int);
 #endif
 };
 
@@ -165,8 +189,14 @@ public:
 #ifdef Class__SHARED_EXTRAS
    Class__SHARED_EXTRAS
 #endif
+
 #ifdef class__EXTRAS
-   class__EXTRAS
+  Symbol get_filename() { return filename; }
+  void dump_with_types(ostream&,int);
+  Symbol get_name() { return name; }
+  Symbol get_parent() { return parent; }
+  void semant(ClassTable*);
+  Features get_features() { return features; }
 #endif
 };
 
@@ -189,13 +219,17 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Feature_SHARED_EXTRAS
-   Feature_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  void semant(ClassTable*);
+  Symbol get_name() { return name; }
+  void publish(ClassTable*);
 #endif
+
 #ifdef method_EXTRAS
-   method_EXTRAS
+  Symbol get_return_type() { return return_type; }    \
+  Formals get_formals() { return formals; }
 #endif
 };
-
 
 // define constructor - attr
 class attr_class : public Feature_class {
@@ -237,9 +271,14 @@ public:
 #ifdef Formal_SHARED_EXTRAS
    Formal_SHARED_EXTRAS
 #endif
+
 #ifdef formal_EXTRAS
-   formal_EXTRAS
+  void dump_with_types(ostream&,int);
+  void publish(ClassTable*);
+  Symbol get_type() { return type_decl; }
+  Symbol get_name() { return name; }
 #endif
+
 };
 
 
@@ -262,7 +301,9 @@ public:
    Case_SHARED_EXTRAS
 #endif
 #ifdef branch_EXTRAS
-   branch_EXTRAS
+  void dump_with_types(ostream& ,int);
+  Symbol semant(ClassTable*);
+  Symbol get_type() { return type_decl; }
 #endif
 };
 
@@ -281,7 +322,8 @@ public:
    void dump(ostream& stream, int n);
 
 #ifdef Expression_SHARED_EXTRAS
-   Expression_SHARED_EXTRAS
+  void dump_with_types(ostream&,int);
+  Symbol semant(ClassTable*);
 #endif
 #ifdef assign_EXTRAS
    assign_EXTRAS
@@ -783,95 +825,6 @@ public:
    object_EXTRAS
 #endif
 };
-
-// Custom node methods
-
-#define Program_EXTRAS                          \
-virtual void semant() = 0;			\
-virtual void dump_with_types(ostream&, int) = 0;
-
-#define program_EXTRAS                          \
-void semant();     				\
-void dump_with_types(ostream&, int);
-
-#define Class__EXTRAS                   \
-virtual Symbol get_filename() = 0;      \
-virtual void dump_with_types(ostream&,int) = 0; \
-virtual Symbol get_name() = 0;      \
-virtual Symbol get_parent() = 0;    \
-virtual void semant(ClassTable*) = 0;  \
-virtual Features get_features() = 0;
-
-
-#define class__EXTRAS                                 \
-Symbol get_filename() { return filename; }             \
-void dump_with_types(ostream&,int);                     \
-Symbol get_name() { return name; }                    \
-Symbol get_parent() { return parent; }              \
-void semant(ClassTable*);               \
-Features get_features() { return features; }
-
-
-#define Feature_EXTRAS                                        \
-virtual void dump_with_types(ostream&,int) = 0;     \
-virtual void semant(ClassTable*) = 0;      \
-virtual Symbol get_name() = 0; \
-virtual void publish(ClassTable*) = 0;
-
-#define Feature_SHARED_EXTRAS                                       \
-void dump_with_types(ostream&,int);                         \
-void semant(ClassTable*);                   \
-Symbol get_name() { return name; }     \
-void publish(ClassTable*);
-
-
-#define Method_EXTRAS           \
-virtual Formals get_formals() = 0;
-
-#define method_EXTRAS                           \
-Symbol get_return_type() { return return_type; }    \
-Formals get_formals() { return formals; }
-
-#define Formal_EXTRAS                              \
-virtual void dump_with_types(ostream&,int) = 0;  \
-virtual void publish(ClassTable*) = 0;      \
-virtual Symbol get_type() = 0;        \
-virtual Symbol get_name() = 0;
-
-
-#define formal_EXTRAS                           \
-void dump_with_types(ostream&,int);        \
-void publish(ClassTable*);       \
-Symbol get_type() { return type_decl; }    \
-Symbol get_name() { return name; }
-
-
-#define Case_EXTRAS                             \
-virtual void dump_with_types(ostream& ,int) = 0; \
-virtual Symbol semant(ClassTable*) = 0;   \
-virtual Symbol get_type() = 0;
-
-
-#define branch_EXTRAS                                   \
-void dump_with_types(ostream& ,int);                \
-Symbol semant(ClassTable*);              \
-Symbol get_type() { return type_decl; }
-
-
-#define Expression_EXTRAS                    \
-Symbol type;                                 \
-Symbol get_type() { return type; }           \
-Expression set_type(Symbol s) { type = s; return this; } \
-virtual void dump_with_types(ostream&,int) = 0;  \
-void dump_type(ostream&, int);               \
-Expression_class() { type = (Symbol) NULL; } \
-virtual Symbol semant(ClassTable*) = 0;
-
-
-#define Expression_SHARED_EXTRAS           \
-void dump_with_types(ostream&,int);         \
-Symbol semant(ClassTable*);
-
 
 // define the prototypes of the interface
 Classes nil_Classes();
